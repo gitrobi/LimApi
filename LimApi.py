@@ -166,6 +166,6 @@ if __name__ == '__main__':
     print('query_history_delorder', api.query_history_delorder(3,1))
     print('query_history_jour', api.query_history_jour(3,1))
     print('get_stock_quote', api.get_stock_quote('600993'))
-    print('buy_sell', api.buy_sell(1, 0, '159901', 100, 4.600))
+    print('buy_sell', api.buy_sell(0, 0, '600993', 100, 1))
     #print('cancel_order', api.cancel_order(1, 0))
     #print('logout', api.logout())
