@@ -1,7 +1,7 @@
 # LimApi.py
 """
 说明:
-此接口仅为lim trade.exe后端服务web接口的python封装,本接口不提供任何后端服务.
+此接口仅为网上lim trade.exe后端服务web接口的python封装,trade.exe并不是我开发的，Please using it at your own risk!
 
 声明:
 此代码仅限用于个人学习和研究目的；不得将上述内容用于商业或者非法用途，否则一切后果请用户自负!!!
