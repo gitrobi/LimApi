@@ -1,4 +1,4 @@
-# LimApi.py
+# limapi.py
 """
 说明:
 此接口仅为网上lim trade.exe后端服务web接口的python封装,trade.exe并不是我开发的，Please using it at your own risk!
@@ -31,8 +31,11 @@ def web_http(url, params):
 class LimApi(object):
 
     def __init__(self):
-        self.account_info = ini2json('LimAccount.ini')
-        self.url_info = ini2json('LimConfig.ini')
+        import os
+        path = os.path.dirname(__file__)
+        #print(path)
+        self.account_info = ini2json(path + '/LimAccount.ini')
+        self.url_info = ini2json(path + '/LimConfig.ini')
 
     def login(self):
         url = self.url_info.get('server') + self.url_info.get('login')
@@ -123,6 +126,12 @@ class LimApi(object):
         params = {'account': self.account_info['account'], 'days': days, 'day_offset': day_offset}
         return web_http(url, params)
 
+    def buy(self, trademode, stockcode, num, price):
+        return self.buy_sell(1, trademode, stockcode, num, price)
+
+    def sell(self, trademode, stockcode, num, price):
+        return self.buy_sell(0, trademode, stockcode, num, price)
+
     def buy_sell(self, buy_or_sell, trademode, stockcode, num, price):
         '''
         :param buy_or_sell: 买:1/卖:0
@@ -156,16 +165,17 @@ class LimApi(object):
 if __name__ == '__main__':
     api = LimApi()
     print('login', api.login())
-    print('get_broker_count', api.get_broker_count())
+    # print('get_broker_count', api.get_broker_count())
     print('query_user_info', api.query_user_info())
-    print('query_bank_info', api.query_bank_info())
-    print('query_myasset', api.query_myasset())
-    print('query_order_list', api.query_order_list())
-    print('query_history_order', api.query_history_order(3,1))
-    print('query_history_deal', api.query_history_deal(3,1))
-    print('query_history_delorder', api.query_history_delorder(3,1))
-    print('query_history_jour', api.query_history_jour(3,1))
-    print('get_stock_quote', api.get_stock_quote('600993'))
-    print('buy_sell', api.buy_sell(0, 0, '600993', 100, 1))
+    # print('query_bank_info', api.query_bank_info())
+    # print('query_myasset', api.query_myasset())
+    # print('query_order_list', api.query_order_list())
+    # print('query_history_order', api.query_history_order(3,1))
+    # print('query_history_deal', api.query_history_deal(3,1))
+    # print('query_history_delorder', api.query_history_delorder(3,1))
+    # print('query_history_jour', api.query_history_jour(3,1))
+    # print('get_stock_quote', api.get_stock_quote('600993'))
+    #print('buy_sell', api.buy_sell(0, 0, '000001', 100, 1))
+    #print('buy', api.buy(0, '511690', 100, 99.990))
     #print('cancel_order', api.cancel_order(1, 0))
     #print('logout', api.logout())
